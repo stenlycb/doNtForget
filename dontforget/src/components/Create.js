@@ -44,7 +44,10 @@ const Create = (props) => {
 
         if (title !== undefined && title !== "") {
             noteData['title'] = title;
+        } else if (title === undefined || (title !== undefined && title === "")) {
+            setShowMessage({ message: "title is necessary", color: "#ff8e8e", textColor: "black" });
         }
+
         if (thoughts !== undefined && noteData['title'] !== undefined) {
             noteData['thoughts'] = thoughts;
         }
