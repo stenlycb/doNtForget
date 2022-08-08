@@ -7,11 +7,21 @@ import { useEffect, useState } from "react";
 const Note = (props) => {
 
     const [editElementID, setEditElementID] = useState('');
-
     const navigate = useNavigate();
 
-    const onEdit = (e) => {
+    let priorityStyle = 'medium-priority';
+    if (props.priority !== undefined) {
+        switch (props.priority) {
+            case 1:
+                priorityStyle = "high-priority";
+                break;
+            case 3:
+                priorityStyle = "low-priority";
+                break;
+        }
+    }
 
+    const onEdit = (e) => {
         if (props.id !== undefined && props.id !== '') {
             setEditElementID(props.id);
         }
@@ -29,7 +39,7 @@ const Note = (props) => {
 
         <Grid item xs={6} md={3.8} key={props.id} >
 
-            <div className="paper">
+            <div className={`paper-${priorityStyle}`}>
                 <span style={{ display: 'none' }}>id: {props.id}</span>
 
                 <Grid container direction="row" spacing={0} >
@@ -43,6 +53,8 @@ const Note = (props) => {
                     <Grid item xs={2} >
                         <div className="note-box-bin1" onClick={() => props.onDeleteMethod(props.id)} ><Button startIcon={<DeleteIcon />} /></div>
                     </Grid>
+
+                    <div className="note-modified">{props.modified}</div>
 
                 </Grid>
 

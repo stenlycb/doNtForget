@@ -61,7 +61,11 @@ body{
 
 .note-box-title{
   font-weight: 900;
-  margin-left: 65px;
+  margin-left: 60px;
+  padding: 2px 0 0 2px;
+  background: #f5e1c2;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0px 0px 3px;
 }
 
 .note-box-thoughts{
@@ -73,7 +77,7 @@ body{
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Handlee);
 
-.paper {
+.paper-high-priority {
   position: relative;
   width: 90%;
   max-width: 800px;
@@ -85,12 +89,59 @@ body{
   box-shadow: 0 2px 8px rgb(0 0 0 / 30%);
   overflow: hidden;
 }
-.paper:before {
+.paper-medium-priority {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  min-width: 355px;
+  height: 480px;
+  margin: 5px auto;
+  background: papayawhip;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 30%);
+  overflow: hidden;
+}
+.paper-low-priority {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  min-width: 355px;
+  height: 480px;
+  margin: 5px auto;
+  background: papayawhip;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 30%);
+  overflow: hidden;
+}
+
+.paper-high-priority:before {
   content: '';
   position: absolute;
   top: 0; bottom: 0; left: 0;
   width: 60px;
-  background: radial-gradient(purple 6px, transparent 7px) repeat-y;
+  background: radial-gradient(#ff8e8e 4px, transparent 6px) repeat-y;
+  background-size: 30px 30px;
+  border-right: 3px solid gray;
+  box-sizing: border-box;
+}
+
+.paper-medium-priority:before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 60px;
+  background: radial-gradient(rgb(131, 131, 247) 4px, transparent 6px) repeat-y;
+  background-size: 30px 30px;
+  border-right: 3px solid gray;
+  box-sizing: border-box;
+}
+
+.paper-low-priority:before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 60px;
+  background: radial-gradient(gray 4px, transparent 6px) repeat-y;
   background-size: 30px 30px;
   border-right: 3px solid gray;
   box-sizing: border-box;
@@ -121,6 +172,14 @@ body{
   z-index: 1;
 }
 
+.note-modified{
+  position: absolute;
+  transform: rotate(-90deg);
+  left: -28px;
+  bottom: 70px;
+  text-shadow: 0 0 1px #555;
+  color: gray;
+}
 
 
 /* 

@@ -1,9 +1,10 @@
 
-import { Button, TextField, Grid } from "@mui/material";
-import { useState, useEffect } from "react";
+import { Button, TextField, Grid, Select, MenuItem, InputLabel } from "@mui/material";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import useMakeRequest from "../hooks/useMakeRequest";
 import { URL } from "../services/Create";
+import Alert from "./Alert";
 
 const Create = (props) => {
 
@@ -11,11 +12,15 @@ const Create = (props) => {
 
     const [title, setTitle] = useState('');
     const [thoughts, setThoughts] = useState('');
-    const [date, setDate] = useState('');
+    const [modified, setModified] = useState(null);
+    const [priority, setPriority] = useState(2); // 1 high, 2 medium, 3 low
     const [onSaveMode, setOnSaveMode] = useState(false);
     const [elementLoaded, setElementLoaded] = useState(false);
     const [reqData, makeRequest] = useMakeRequest();
 
+    const [showMessage, setShowMessage] = useState({});
+
+    const reqDataRef = useRef({});
 
     const clearFormData = () => {
         setTitle('');
@@ -43,6 +48,9 @@ const Create = (props) => {
         if (thoughts !== undefined && noteData['title'] !== undefined) {
             noteData['thoughts'] = thoughts;
         }
+        if (priority !== undefined && noteData['title'] !== undefined) {
+            noteData['priority'] = priority;
+        }
 
         const request = {
             url: _url,
@@ -51,6 +59,17 @@ const Create = (props) => {
         }
 
         if (Object.keys(noteData).length > 0) {
+
+            if (method === 'put') {
+                noteData['_id'] = params.id;
+            }
+
+            const newDate = new Date();
+            const date = newDate.getDate();
+            const month = newDate.getMonth() + 1;
+            const year = newDate.getFullYear();
+            noteData['modified'] = `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`} ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`;
+
             setOnSaveMode(true);
             await makeRequest(request);
         }
@@ -70,16 +89,22 @@ const Create = (props) => {
         if (type === 'thoughts') {
             setThoughts(e.target.value);
         }
+
+        if (type === 'priority') {
+            setPriority(e.target.value);
+        }
     }
 
-
+    /**
+     * 
+     */
     const loadElementForEdit = async () => {
 
         // get element
         console.log(params);
 
         const request = {
-            url: URL,
+            url: `${URL}/${params.id}`,
             method: 'get',
         }
 
@@ -88,23 +113,36 @@ const Create = (props) => {
     }
 
 
+    /**
+     * 
+     */
     const checkDataAndSet = () => {
 
-
         // set data in fields
-        if (reqData[params.id] !== undefined && Object.keys(reqData[params.id]).length > 0) {
+        if (reqData !== undefined && Object.keys(reqData).length > 0) {
 
             setElementLoaded(true);
 
-            if (reqData[params.id].title !== undefined) {
-                setTitle(reqData[params.id].title);
+            if (reqData.title !== undefined) {
+                setTitle(reqData.title);
             }
 
-            if (reqData[params.id].thoughts !== undefined) {
-                setThoughts(reqData[params.id].thoughts);
+            if (reqData.thoughts !== undefined) {
+                setThoughts(reqData.thoughts);
+            }
+            if (reqData.priority !== undefined) {
+                setPriority(reqData.priority);
             }
         }
 
+    }
+
+    /**
+     * 
+     */
+    const messageShown = () => {
+        setShowMessage({});
+        console.log("messageShown() -> called");
     }
 
     /**
@@ -115,32 +153,72 @@ const Create = (props) => {
         if (onSaveMode === true && reqData !== undefined && Object.keys(reqData).length > 0) {
 
             // alert("successful saved");
-            clearFormData();
+            // clean form when navigate changed
+            if (params.id === undefined) {
+                clearFormData();
+            }
+
+            if (JSON.stringify(reqData) !== JSON.stringify(reqDataRef.current)) {
+                setShowMessage({ message: "success" });
+                reqDataRef.current = reqData;
+            } else {
+                setShowMessage({ message: "already saved", color: "yellow", textColor: "black" });
+            }
+
+            console.log(reqData);
         }
 
         // call api to get data
         if (elementLoaded === false && params.id !== undefined && params.id !== null && params.id !== '') {
             loadElementForEdit();
+            setShowMessage({ message: "loading...", color: "blue", textColor: "white", loadingTime: 500 });
+
         }
 
     }, [reqData]);
 
 
-    return (
 
-        <form className="create-note-form">
-            <Grid item>
-                <TextField id="standard-basic" label="Title" variant="standard" placeholder='title...' value={title} onChange={(e) => handleChange(e, "title")} />
-            </Grid>
-            <Grid item sx={{ maringTop: '10px' }}>
-                <label htmlFor="note-thoughts"></label>
-                <textarea id="note-thoughts" placeholder='My thoughts...' value={thoughts} onChange={(e) => handleChange(e, "thoughts")}></textarea>
-            </Grid>
-            <Grid item>
-                <Button onClick={clearFormData}>Clear</Button>
-                <Button onClick={save}>Save</Button>
-            </Grid>
-        </form>
+    useEffect(() => {
+
+        // clean form when navigate changed
+        if (params.id === undefined) {
+            clearFormData();
+        }
+
+    }, [params])
+
+
+    return (
+        <>
+
+            {Object.keys(showMessage).length > 0
+                ?
+                <Alert onReturnMethod={messageShown} data={showMessage} />
+                : null
+            }
+
+            <form className="create-note-form">
+                <Grid item>
+                    <TextField id="standard-basic" label="Title" variant="standard" placeholder='title...' value={title} onChange={(e) => handleChange(e, "title")} />
+
+                    <InputLabel id="note-priority">Priority</InputLabel>
+                    <Select labelId="note-priority" id="demo-simple-select" value={priority} label="Priority" onChange={(e) => handleChange(e, "priority")} >
+                        <MenuItem value={1}>High</MenuItem>
+                        <MenuItem value={2}>Medium</MenuItem>
+                        <MenuItem value={3}>Low</MenuItem>
+                    </Select>
+                </Grid>
+                <Grid item sx={{ maringTop: '10px' }}>
+                    <label htmlFor="note-thoughts"></label>
+                    <textarea id="note-thoughts" placeholder='My thoughts...' value={thoughts} onChange={(e) => handleChange(e, "thoughts")}></textarea>
+                </Grid>
+                <Grid item>
+                    <Button onClick={clearFormData}>Clear</Button>
+                    <Button onClick={save}>Save</Button>
+                </Grid>
+            </form>
+        </>
     )
 
 }

@@ -78,7 +78,7 @@ const Notes = () => {
                 {notes && Object.keys(notes).length > 0
                     ?
                     notes.map((element, index) => {
-                        return <Note key={element._id} id={element._id} title={element.title} thoughts={element.thoughts} onDeleteMethod={onDeleteChild} />
+                        return <Note key={element._id} id={element._id} title={element.title} thoughts={element.thoughts} priority={element.priority} modified={element.modified} onDeleteMethod={onDeleteChild} />
                     })
 
                     : <div>Loading... (or empty)</div>
