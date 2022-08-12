@@ -181,6 +181,9 @@ body{
   color: gray;
 }
 
+.app-route-menu{
+  margin: 0 5px !important;
+}
 
 /* 
 checklist

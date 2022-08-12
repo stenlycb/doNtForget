@@ -9,17 +9,12 @@ const AppMenu = () => {
 
         <Container maxWidth="sm" className="app-menu-container" >
             <Grid>
-
-                <Link to="/">
-                    <Button> Home</Button>
+                <Link style={{ textDecoration: 'none' }} to="/notes">
+                    <Button variant="contained" className="app-route-menu">Notes</Button>
                 </Link>
 
-                <Link to="/create">
-                    <Button>Create</Button>
-                </Link>
-
-                <Link to="/notes">
-                    <Button>Notes</Button>
+                <Link style={{ textDecoration: 'none' }} to="/create">
+                    <Button variant="contained" className="app-route-menu">Create</Button>
                 </Link>
 
             </Grid>

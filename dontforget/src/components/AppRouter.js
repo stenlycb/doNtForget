@@ -17,10 +17,10 @@ const AppRouter = () => {
 
             <Grid container className="app-content">
                 <Routes>
-                    <Route path="/" element={<Home />}>Home</Route>
+                    <Route path="/" element={<Notes />}>Notes</Route>
+                    <Route path="/notes" element={<Notes />} >Notes</Route>
                     <Route path="/create" element={<Create />} >Create</Route>
                     <Route path="/edit/:id" element={<Create />} >Create</Route>
-                    <Route path="/notes" element={<Notes />} >Notes</Route>
                 </Routes>
             </Grid>
 

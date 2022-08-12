@@ -1,11 +1,15 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const Home = () => {
 
-    return (
-        <div>
-            Home
-        </div>
-    )
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+        navigate("/notes");
+
+    });
 
 }
 

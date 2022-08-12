@@ -12,8 +12,9 @@ const Create = (props) => {
 
     const [title, setTitle] = useState('');
     const [thoughts, setThoughts] = useState('');
-    const [modified, setModified] = useState(null);
+    const [type, setType] = useState('text');
     const [priority, setPriority] = useState(2); // 1 high, 2 medium, 3 low
+    const [checkboxes, setChecknboxes] = useState([]);
     const [onSaveMode, setOnSaveMode] = useState(false);
     const [elementLoaded, setElementLoaded] = useState(false);
     const [reqData, makeRequest] = useMakeRequest();
@@ -53,6 +54,10 @@ const Create = (props) => {
         }
         if (priority !== undefined && noteData['title'] !== undefined) {
             noteData['priority'] = priority;
+        }
+
+        if (type !== undefined && noteData['title'] !== undefined) {
+            noteData['type'] = type;
         }
 
         const request = {
@@ -96,6 +101,10 @@ const Create = (props) => {
         if (type === 'priority') {
             setPriority(e.target.value);
         }
+
+        if (type === 'type') {
+            setType(e.target.value);
+        }
     }
 
     /**
@@ -129,12 +138,14 @@ const Create = (props) => {
             if (reqData.title !== undefined) {
                 setTitle(reqData.title);
             }
-
             if (reqData.thoughts !== undefined) {
                 setThoughts(reqData.thoughts);
             }
             if (reqData.priority !== undefined) {
                 setPriority(reqData.priority);
+            }
+            if (reqData.type !== undefined) {
+                setType(reqData.type);
             }
         }
 
@@ -212,6 +223,14 @@ const Create = (props) => {
                             <MenuItem value={1}>High</MenuItem>
                             <MenuItem value={2}>Medium</MenuItem>
                             <MenuItem value={3}>Low</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <FormControl variant="standard" style={{ margin: '0 10px' }}>
+                        <InputLabel id="note-priority">Type</InputLabel>
+                        <Select labelId="note-priority" id="demo-simple-select" value={type} label="Type" onChange={(e) => handleChange(e, "type")} >
+                            <MenuItem value={"text"}>Text</MenuItem>
+                            <MenuItem value={"checkbox"}>Checkbox</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
