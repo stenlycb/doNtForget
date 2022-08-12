@@ -1,6 +1,6 @@
 import { Button, Grid } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
+import Edit from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
@@ -48,7 +48,7 @@ const Note = (props) => {
                         <div className="note-box-title">{props.title}</div>
                     </Grid>
                     <Grid item xs={2} >
-                        <div className="note-box-bin1" onClick={onEdit}><Button startIcon={<BorderColorIcon />} /></div>
+                        <div className="note-box-bin1" onClick={onEdit}><Button startIcon={<Edit />} /></div>
                     </Grid>
                     <Grid item xs={2} >
                         <div className="note-box-bin1" onClick={() => props.onDeleteMethod(props.id)} ><Button startIcon={<DeleteIcon />} /></div>

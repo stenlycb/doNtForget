@@ -1,5 +1,5 @@
 
-import { Button, TextField, Grid, Select, MenuItem, InputLabel } from "@mui/material";
+import { Button, TextField, Grid, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import useMakeRequest from "../hooks/useMakeRequest";
@@ -202,15 +202,18 @@ const Create = (props) => {
             }
 
             <form className="create-note-form">
-                <Grid item>
-                    <TextField id="standard-basic" label="Title" variant="standard" placeholder='title...' value={title} onChange={(e) => handleChange(e, "title")} />
+                <Grid item style={{ display: 'inline-flex', margin: '15px 0 0 0', }}>
+                    <TextField id="standard-basic" label="Title" variant="standard" placeholder='title...' value={title} onChange={(e) => handleChange(e, "title")} inputProps={{ maxLength: 18 }}
+                    />
 
-                    <InputLabel id="note-priority">Priority</InputLabel>
-                    <Select labelId="note-priority" id="demo-simple-select" value={priority} label="Priority" onChange={(e) => handleChange(e, "priority")} >
-                        <MenuItem value={1}>High</MenuItem>
-                        <MenuItem value={2}>Medium</MenuItem>
-                        <MenuItem value={3}>Low</MenuItem>
-                    </Select>
+                    <FormControl variant="standard" style={{ margin: '0 10px' }}>
+                        <InputLabel id="note-priority">Priority</InputLabel>
+                        <Select labelId="note-priority" id="demo-simple-select" value={priority} label="Priority" onChange={(e) => handleChange(e, "priority")} >
+                            <MenuItem value={1}>High</MenuItem>
+                            <MenuItem value={2}>Medium</MenuItem>
+                            <MenuItem value={3}>Low</MenuItem>
+                        </Select>
+                    </FormControl>
                 </Grid>
                 <Grid item sx={{ maringTop: '10px' }}>
                     <label htmlFor="note-thoughts"></label>
