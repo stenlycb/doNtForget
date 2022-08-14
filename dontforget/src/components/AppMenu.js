@@ -2,7 +2,7 @@ import { Container, Grid, Button } from "@mui/material";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import MainContext from "../context/MainContext";
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const AppMenu = () => {
 
@@ -20,7 +20,7 @@ const AppMenu = () => {
                     <Button variant="contained" className="app-route-menu">Create</Button>
                 </Link>
 
-                <Button className="app-route-menu" onClick={() => updateUser({ logout: true })}>{`logout [${user.username}]`}</Button>
+                <Button endIcon={<LogoutIcon />} className="app-route-menu" onClick={() => updateUser({ logout: true })}>{user.username}</Button>
 
             </Grid>
         </Container>

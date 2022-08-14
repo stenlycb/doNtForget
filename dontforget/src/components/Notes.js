@@ -1,10 +1,13 @@
 import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import MainContext from "../context/MainContext";
 import useMakeRequest from "../hooks/useMakeRequest";
 import { URL } from "../services/Create";
 import Note from "./Note";
 
 const Notes = () => {
+
+    const { user } = useContext(MainContext);
 
     const [notes, setNotes] = useState([]);
     const [requestCalled, setRequestCalled] = useState(false);
@@ -56,8 +59,10 @@ const Notes = () => {
 
             let _notes = [];
             for (const i in notesReq) {
-                console.log(i, notesReq[i]);
-                _notes.push(notesReq[i]);
+                if (notesReq[i].username === user.username) {
+                    console.log(i, notesReq[i]);
+                    _notes.push(notesReq[i]);
+                }
             }
             setNotes(_notes);
         } else if (notesReq !== undefined && Object.keys(notesReq).length === 0 && notes.length > 0) {

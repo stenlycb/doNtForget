@@ -6,7 +6,7 @@ import MainContext from './context/MainContext';
 
 function App() {
 
-  const loggeduser = (localStorage.getItem("loggedUser") !== null) ? JSON.parse(localStorage.getItem("loggedUser")) : {};
+  const loggeduser = (localStorage.getItem("loggedUser") !== null && localStorage.getItem("loggedUser") !== 'null') ? JSON.parse(localStorage.getItem("loggedUser")) : {};
   const navigate = useNavigate();
 
   /**

@@ -1,12 +1,15 @@
 
 import { Button, TextField, Grid, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useParams } from "react-router";
+import MainContext from "../context/MainContext";
 import useMakeRequest from "../hooks/useMakeRequest";
 import { URL } from "../services/Create";
 import Alert from "./Alert";
 
 const Create = (props) => {
+
+    const { user } = useContext(MainContext);
 
     const params = useParams();
 
@@ -77,6 +80,7 @@ const Create = (props) => {
             const month = newDate.getMonth() + 1;
             const year = newDate.getFullYear();
             noteData['modified'] = `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`} ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`;
+            noteData['username'] = user.username;
 
             setOnSaveMode(true);
             await makeRequest(request);

@@ -2,11 +2,14 @@ import { Button, Checkbox, FormControlLabel, Grid } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useMakeRequest from "../hooks/useMakeRequest";
 import { URL } from "../services/Create";
+import MainContext from "../context/MainContext";
 
 const Note = (props) => {
+
+    const { user } = useContext(MainContext);
 
     const [editElementID, setEditElementID] = useState('');
     const [checkboxes, setCheckboxes] = useState([]);
@@ -93,6 +96,7 @@ const Note = (props) => {
                     priority: props.priority,
                     modified: props.modified,
                     type: props.type,
+                    username: user.username,
                 },
             }
 
