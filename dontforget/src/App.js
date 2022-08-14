@@ -6,6 +6,7 @@ import MainContext from './context/MainContext';
 
 function App() {
 
+  const loggeduser = (localStorage.getItem("loggedUser") !== null) ? JSON.parse(localStorage.getItem("loggedUser")) : {};
   const navigate = useNavigate();
 
   /**
@@ -13,15 +14,17 @@ function App() {
    * | manage MainContext
    * |---------------------------------------------------
    */
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(loggeduser);
 
   const updateUser = (_user) => {
 
     if (Object.keys(_user).length > 0) {
       if (_user.logout !== undefined && _user.logout === true) {
         setUser({});
+        localStorage.setItem("loggedUser", null);
       } else {
         setUser(_user);
+        localStorage.setItem("loggedUser", JSON.stringify(_user));
       }
     }
   }
@@ -33,6 +36,8 @@ function App() {
     } else {
       navigate('/login');
     }
+
+    console.log(user);
 
   }, [user]);
 
