@@ -37,8 +37,6 @@ function App() {
       navigate('/login');
     }
 
-    console.log(user);
-
   }, [user]);
 
 
