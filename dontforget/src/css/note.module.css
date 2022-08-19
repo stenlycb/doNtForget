@@ -1,0 +1,50 @@
+
+
+  .notes_box{
+    width: 100%;
+  }
+  
+  .note_box{
+    /* display: inline-block; */
+    min-height: 180px;
+    /* max-width: 29%; */
+    background: papayawhip;
+    /* margin: 0 1px ; */
+    /* max-width: 29%; */
+    margin: 5px !important ;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .note_box_bin{
+    position: relative;
+    float: right;
+    right: 0;
+    top: 0;
+  }
+  
+  .note_box_title{
+    font-weight: 900;
+    margin-left: 60px;
+    padding: 2px 0 0 2px;
+    background: #f5e1c2;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0px 0px 3px;
+  }
+  
+  .note_box_thoughts{
+  
+    padding-top: 10px;
+  }
+
+  .note_modified{
+    position: absolute;
+    transform: rotate(-90deg);
+    left: -28px;
+    bottom: 70px;
+    text-shadow: 0 0 1px #555;
+    color: gray;
+  }
+
+  

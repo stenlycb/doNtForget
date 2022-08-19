@@ -16,62 +16,7 @@ body{
   /* background: white; */
 }
 
-#note-thoughts{
-  width: calc(100% - 20px);
-  margin-top: 10px;
-  min-height: 300px;
-  padding: 10px;
-}
 
-.create-note-form{
-  width: 100%;
-}
-
-.app-menu-container{
-  text-align: center;
-}
-
-.notes-box{
-  width: 100%;
-}
-
-.note-box{
-  /* display: inline-block; */
-  min-height: 180px;
-  /* max-width: 29%; */
-  background: papayawhip;
-  /* margin: 0 1px ; */
-  /* max-width: 29%; */
-  margin: 5px !important ;
-  border: 1px solid gray;
-  padding: 10px;
-  border-radius: 5px;
-}
-.note-box:hover{
-  filter: drop-shadow(0px 0px 3px  #ccc );
-}
-
-.note-box-bin{
-  position: relative;
-  float: right;
-  right: 0;
-  top: 0;
-}
-
-
-.note-box-title{
-  font-weight: 900;
-  margin-left: 60px;
-  padding: 2px 0 0 2px;
-  background: #f5e1c2;
-  border-bottom-right-radius: 10px;
-  box-shadow: 0px 0px 3px;
-}
-
-.note-box-thoughts{
-
-  padding-top: 10px;
-}
 
 
 @import url(https://fonts.googleapis.com/css?family=Roboto);
@@ -172,17 +117,27 @@ body{
   z-index: 1;
 }
 
-.note-modified{
-  position: absolute;
-  transform: rotate(-90deg);
-  left: -28px;
-  bottom: 70px;
-  text-shadow: 0 0 1px #555;
-  color: gray;
-}
-
 .app-route-menu{
   margin: 0 5px !important;
+}
+
+#note-thoughts{
+  width: calc(100% - 20px);
+  margin-top: 10px;
+  min-height: 300px;
+  padding: 10px;
+}
+
+.create-note-form{
+  width: 100%;
+}
+
+.note_box:hover{
+  filter: drop-shadow(0px 0px 3px  #ccc );
+}
+  
+.app-menu-container{
+  text-align: center;
 }
 
 /* 

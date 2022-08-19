@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import useMakeRequest from "../hooks/useMakeRequest";
 import { URL } from "../services/Create";
 import MainContext from "../context/MainContext";
+import styleNote from "../css/note.module.css";
 
 const Note = (props) => {
 
@@ -142,16 +143,16 @@ const Note = (props) => {
                 <Grid container direction="row" spacing={0} >
 
                     <Grid item xs={8} >
-                        <div className="note-box-title">{props.title}</div>
+                        <div className={styleNote.note_box_title}>{props.title}</div>
                     </Grid>
                     <Grid item xs={2} >
-                        <div className="note-box-bin1" onClick={onEdit}><Button startIcon={<Edit />} /></div>
+                        <div className={styleNote.note_box_bin1} onClick={onEdit}><Button startIcon={<Edit />} /></div>
                     </Grid>
                     <Grid item xs={2} >
-                        <div className="note-box-bin1" onClick={() => props.onDeleteMethod(props.id)} ><Button startIcon={<DeleteIcon />} /></div>
+                        <div className={styleNote.note_box_bin1} onClick={() => props.onDeleteMethod(props.id)} ><Button startIcon={<DeleteIcon />} /></div>
                     </Grid>
 
-                    <div className="note-modified">{props.modified}</div>
+                    <div className={styleNote.note_modified}>{props.modified}</div>
 
                 </Grid>
 

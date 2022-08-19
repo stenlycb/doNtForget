@@ -4,6 +4,7 @@ import MainContext from "../context/MainContext";
 import useMakeRequest from "../hooks/useMakeRequest";
 import { URL } from "../services/Create";
 import Note from "./Note";
+import styleNote from "../css/note.module.css";
 
 const Notes = () => {
 
@@ -74,7 +75,7 @@ const Notes = () => {
 
     return (
 
-        <div className="notes-box">
+        <div className={styleNote.notes_box}>
             <h3>Notes</h3>
 
             <Grid container direction="row" justifyContent="center"
