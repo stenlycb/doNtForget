@@ -12,7 +12,7 @@ In the project [server] directory, you must run:
 
 ### `node server.js`
 
-# Legend
+## Legend
 
 -   red  - high priority
 -   blue - medium/default priority
