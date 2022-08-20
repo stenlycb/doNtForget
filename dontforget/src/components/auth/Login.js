@@ -73,7 +73,7 @@ const Login = (props) => {
                 <TextField style={{ display: 'block' }} id="standard-basic" label="Username" variant="standard" placeholder='username...' value={username}
                     onChange={(e) => handleChange(e, "username")} inputProps={{ maxLength: 18 }} />
 
-                <TextField style={{ display: 'block' }} id="standard-basic" label="Password" variant="standard" placeholder='password...' value={password}
+                <TextField type={'password'} style={{ display: 'block' }} id="standard-basic" label="Password" variant="standard" placeholder='password...' value={password}
                     onChange={(e) => handleChange(e, "password")} inputProps={{ maxLength: 18 }} />
             </Grid>
 

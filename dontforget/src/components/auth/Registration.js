@@ -68,10 +68,10 @@ const Registration = (props) => {
                 <TextField style={{ display: 'block' }} id="standard-basic" label="Username" variant="standard" placeholder='username...' value={username}
                     onChange={(e) => handleChange(e, "username")} inputProps={{ maxLength: 18 }} />
 
-                <TextField style={{ display: 'block' }} id="standard-basic" label="Password" variant="standard" placeholder='password...' value={password}
+                <TextField type={'password'} style={{ display: 'block' }} id="standard-basic" label="Password" variant="standard" placeholder='password...' value={password}
                     onChange={(e) => handleChange(e, "password")} inputProps={{ maxLength: 18 }} />
 
-                <TextField style={{ display: 'block' }} id="standard-basic" label="Repeat password" variant="standard" placeholder='repeat password...' value={repassword}
+                <TextField type={'password'} style={{ display: 'block' }} id="standard-basic" label="Repeat password" variant="standard" placeholder='repeat password...' value={repassword}
                     onChange={(e) => handleChange(e, "repassword")} inputProps={{ maxLength: 18 }} />
             </Grid>
 
