@@ -12,6 +12,11 @@ In the project [server] directory, you must run:
 
 ### `node server.js`
 
+
+## Types
+- plain text
+- checkbox - every single row is a different checkbox
+
 ## Legend
 
 -   red  - high priority
